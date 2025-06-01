@@ -1,4 +1,4 @@
- if (arr.length < 2) return -Infinity;
+ if (!Array.isArray(arr) || arr.length === 0 || arr.length === 1) return undefined;
 
   let max = -Infinity;
   let secondMax = -Infinity;
@@ -14,4 +14,9 @@
     }
   }
 
-  return secondMax === -Infinity ? -Infinity : secondMax;
+  // If secondMax was never updated, it means all elements were the same
+  if (secondMax === -Infinity) {
+    return max; // Condition 5: return the highest if all are same
+  }
+
+  return secondMax;
